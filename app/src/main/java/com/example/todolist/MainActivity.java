@@ -14,8 +14,11 @@ import android.text.style.StyleSpan;
 import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Button;
@@ -35,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final EditText item =  findViewById(R.id.editText);
         final ListView list2 = findViewById(R.id.list);
-
-
+        list2.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        CustomAdapter customAdapter = new CustomAdapter();
+        list2.setAdapter(customAdapter);
         final ArrayAdapter<SpannableString> adapt = new ArrayAdapter<>(this,android.R.layout.simple_list_item_multiple_choice, sheet);
         list2.setAdapter(adapt);
 
-
+        // Listener to see when enter is pressed
         item.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     x.setSpan(textColor,0,item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     x.setSpan(bold,0,item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                    sheet.add(0,x);
+                    sheet.add(x);
                     adapt.notifyDataSetChanged();
                     item.getText().clear();
                     return true;
@@ -62,12 +66,20 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String d = ((TextView) view).getText().toString();
-            }
-        });
+        final ArrayList<SpannableString> sheet2 = new ArrayList<>();
+//        list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                SpannableString d = new SpannableString(((TextView) view).getText());
+//                if(sheet2.contains(d)){
+//                    //sheet2.remove(d);
+//                }
+//                else{
+//                    //sheet2.add(d);
+//                }
+//            }
+//        });
+        // long click to delete
         list2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -107,4 +119,34 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    class CustomAdapter extends BaseAdapter{
+
+
+        @Override
+        public int getCount() {
+            return sheet.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.customlayout, null);
+            TextView text = (TextView)convertView.findViewById(R.id.textView_text);
+            CheckBox check = (CheckBox)convertView.findViewById(R.id.checkBox_check);
+            text.setText(sheet.get(position));
+
+            return null;
+        }
+    }
+
+
 }
