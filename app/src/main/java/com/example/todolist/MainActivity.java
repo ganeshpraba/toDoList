@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.os.Handler;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     int num = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        List<ArrayList<SpannableString>> lists = new ArrayList<ArrayList<SpannableString>>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final EditText item = findViewById(R.id.editText);
@@ -43,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 SpannableString x;
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     if (item.getText().toString().equals("ganesh is gay")) {
-                        x = new SpannableString("   Sudhanva is gay   ");
+                        x = new SpannableString("Sudhanva is gay");
 
                         ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                         StyleSpan bold = new StyleSpan(Typeface.BOLD);
                         AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
-                        x.setSpan(textColor, 0, item.length() + 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(bold, 0, item.length() + 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(sizeText, 0, item.length() + 8, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        x.setSpan(textColor, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        x.setSpan(bold, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        x.setSpan(sizeText, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                         sheet.add(0, x);
 
