@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -47,6 +48,7 @@ public class ListScreen extends AppCompatActivity {
         mAdapter = new MainAdapter(sheet);
         list2.setLayoutManager(layoutM);
         list2.setAdapter(mAdapter);
+        new ItemTouchHelper(itemTHC).attachToRecyclerView(list2);
         item.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -139,7 +141,7 @@ public class ListScreen extends AppCompatActivity {
                             SpannableString c = new SpannableString(x);
                             ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                             StyleSpan bold = new StyleSpan(Typeface.BOLD);
-                            AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
+                            AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(25);
                             c.setSpan(textColor, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                             c.setSpan(bold, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                             c.setSpan(sizeText, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -187,5 +189,16 @@ public class ListScreen extends AppCompatActivity {
 
     }
 
+    ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            return false;
+        }
 
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            sheet.remove(viewHolder.getAdapterPosition());
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 }
