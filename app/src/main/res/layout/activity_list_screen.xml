@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/grey"
-    >
-
-
-       <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="125dp"
-        android:cacheColorHint="#DEE4E7"
-        android:gravity="center"
-        android:paddingLeft="6dip"
-        android:paddingRight="6dip" />
+    tools:context=".ListScreen"
+    android:background="@drawable/grey">
 
     <EditText
         android:id="@+id/editText"
@@ -61,6 +48,17 @@
         android:text="Clear All"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="125dp"
+        android:cacheColorHint="#DEE4E7"
+        android:gravity="center"
+        android:paddingLeft="6dip"
+        android:paddingRight="6dip" />
 
 
 </RelativeLayout>

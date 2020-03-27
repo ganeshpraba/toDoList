@@ -21,7 +21,7 @@ public class HomeScreen extends AppCompatActivity {
         });
     }
     public void openMain(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ListScreen.class);
         startActivity(intent);
 
     }
