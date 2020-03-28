@@ -28,6 +28,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.os.Handler;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListScreen extends AppCompatActivity {
@@ -189,9 +190,13 @@ public class ListScreen extends AppCompatActivity {
 
     }
 
-    ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END,ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            int from = viewHolder.getAdapterPosition();
+            int to = viewHolder1.getAdapterPosition();
+            Collections.swap(sheet, from, to);
+            mAdapter.notifyDataSetChanged();
             return false;
         }
 
