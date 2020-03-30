@@ -2,6 +2,7 @@ package com.example.todolist;
 
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.DialogInterface;
@@ -189,7 +190,7 @@ public class ListScreen extends AppCompatActivity {
         });
 
     }
-
+    SpannableString temp = null;
     ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END,ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
@@ -202,8 +203,19 @@ public class ListScreen extends AppCompatActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            final int pos = viewHolder.getAdapterPosition();
+            temp =  sheet.get(pos);
             sheet.remove(viewHolder.getAdapterPosition());
             mAdapter.notifyDataSetChanged();
+            Snackbar.make(list2, "Deleted "+temp.toString(), Snackbar.LENGTH_LONG)
+                    .setAction("Undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            sheet.add(pos, temp);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }).show();
+
         }
     };
 }

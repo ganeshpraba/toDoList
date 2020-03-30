@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListScreen"
-    android:background="@drawable/grey">
+    android:background="@drawable/grey"
+    android:id="@+id/main_layout">
 
     <EditText
         android:id="@+id/editText"
