@@ -93,34 +93,6 @@ public class ListScreen extends AppCompatActivity {
             }
         });
 
-//        list2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                final int wh_item = position;
-//
-//                new AlertDialog.Builder(ListScreen.this)
-//                        .setIcon(android.R.drawable.ic_delete)
-//                        .setTitle("Are you sure?")
-//                        .setMessage("Do you want to delete this")
-//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                sheet.remove(wh_item);
-//
-//
-//                                adapt.notifyDataSetChanged();
-//                            }
-//                        })
-//                        .setNegativeButton("No", null)
-//                        .show();
-//                adapt.notifyDataSetChanged();
-//
-//                return true;
-//            }
-//        });
-
-
-
         mAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
             SpannableString temp;
             @Override
@@ -191,13 +163,13 @@ public class ListScreen extends AppCompatActivity {
 
     }
     SpannableString temp = null;
-    ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END,ItemTouchHelper.RIGHT) {
+    ItemTouchHelper.SimpleCallback itemTHC = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
             int from = viewHolder.getAdapterPosition();
             int to = viewHolder1.getAdapterPosition();
             Collections.swap(sheet, from, to);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemMoved(from, to);
             return false;
         }
 
