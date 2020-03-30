@@ -59,7 +59,7 @@ public class ListScreen extends AppCompatActivity {
                     if (item.getText().toString().equals("ganesh is gay")) {
                         x = new SpannableString("Sudhanva is gay");
 
-                        ForegroundColorSpan textColor = new ForegroundColorSpan(Color.BLACK);
+                        ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                         StyleSpan bold = new StyleSpan(Typeface.BOLD);
                         AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
                         x.setSpan(textColor, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -74,7 +74,7 @@ public class ListScreen extends AppCompatActivity {
                     } else {
                         x = new SpannableString(item.getText());
                     }
-                    ForegroundColorSpan textColor = new ForegroundColorSpan(Color.BLACK);
+                    ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                     StyleSpan bold = new StyleSpan(Typeface.BOLD);
                     AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
                     x.setSpan(textColor, 0, item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -141,7 +141,7 @@ public class ListScreen extends AppCompatActivity {
                         } else if (num == 2) {
                             String x = sheet.get(pos).toString();
                             SpannableString c = new SpannableString(x);
-                            ForegroundColorSpan textColor = new ForegroundColorSpan(Color.BLACK);
+                            ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                             StyleSpan bold = new StyleSpan(Typeface.BOLD);
                             AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
                             c.setSpan(textColor, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
