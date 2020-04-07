@@ -57,14 +57,15 @@ public class ListScreen extends AppCompatActivity {
                 SpannableString x;
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     if (item.getText().toString().equals("ganesh is gay")) {
-                        x = new SpannableString("Sudhanva is gay");
+                        x = new SpannableString(" Sudhanva is gay ");
 
                         ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                         StyleSpan bold = new StyleSpan(Typeface.BOLD);
-                        AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
-                        x.setSpan(textColor, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(bold, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(sizeText, 0, item.length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(80);
+                        x.setSpan(textColor, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        x.setSpan(bold, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        x.setSpan(sizeText, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
 
                         sheet.add(0, x);
 
@@ -72,14 +73,14 @@ public class ListScreen extends AppCompatActivity {
                         item.getText().clear();
                         return true;
                     } else {
-                        x = new SpannableString(item.getText());
+                        x = new SpannableString(" "+item.getText()+" ");
                     }
                     ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                     StyleSpan bold = new StyleSpan(Typeface.BOLD);
-                    AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
-                    x.setSpan(textColor, 0, item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    x.setSpan(bold, 0, item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    x.setSpan(sizeText, 0, item.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(80);
+                    x.setSpan(textColor, 0, x.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    x.setSpan(bold, 0, x.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    x.setSpan(sizeText, 0, x.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                     sheet.add(0, x);
 
@@ -115,7 +116,7 @@ public class ListScreen extends AppCompatActivity {
                             SpannableString c = new SpannableString(x);
                             ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
                             StyleSpan bold = new StyleSpan(Typeface.BOLD);
-                            AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(35);
+                            AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(80);
                             c.setSpan(textColor, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                             c.setSpan(bold, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                             c.setSpan(sizeText, 0, c.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -179,7 +180,7 @@ public class ListScreen extends AppCompatActivity {
             temp =  sheet.get(pos);
             sheet.remove(viewHolder.getAdapterPosition());
             mAdapter.notifyDataSetChanged();
-            Snackbar.make(list2, "Deleted "+temp.toString(), Snackbar.LENGTH_LONG)
+            Snackbar.make(list2, "Deleted:  \""+temp.toString()+"\"", Snackbar.LENGTH_LONG)
                     .setAction("Undo", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -190,4 +191,5 @@ public class ListScreen extends AppCompatActivity {
 
         }
     };
+
 }
