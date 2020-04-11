@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -33,8 +35,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class ListScreen extends AppCompatActivity {
+    private static final String TAG="List Screen";
+    ArrayList<ArrayList<SpannableString>> motherList = new ArrayList<ArrayList<SpannableString>>();
     ArrayList<SpannableString> sheet = new ArrayList<>();
     int num = 0;
+    //int wList = getIntent().getIntExtra("pos clicked",0);
+
     RecyclerView list2;
     RecyclerView.LayoutManager layoutM;
     MainAdapter mAdapter;
