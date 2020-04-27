@@ -39,13 +39,15 @@ public class ListScreen extends AppCompatActivity {
     ArrayList<ArrayList<SpannableString>> motherList = new ArrayList<ArrayList<SpannableString>>();
     ArrayList<SpannableString> sheet = new ArrayList<>();
     int num = 0;
-    //int wList = getIntent().getIntExtra("pos clicked",0);
+
+
 
     RecyclerView list2;
     RecyclerView.LayoutManager layoutM;
     MainAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int wList = getIntent().getIntExtra("pos clicked",0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_screen);
         //List<ArrayList<SpannableString>> lists = new ArrayList<ArrayList<SpannableString>>();
@@ -57,6 +59,18 @@ public class ListScreen extends AppCompatActivity {
         list2.setLayoutManager(layoutM);
         list2.setAdapter(mAdapter);
         new ItemTouchHelper(itemTHC).attachToRecyclerView(list2);
+
+
+
+
+        SpannableString test = new SpannableString(""+wList);
+        sheet.add(test);
+
+
+
+
+
+
         item.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -65,19 +79,6 @@ public class ListScreen extends AppCompatActivity {
                     if (item.getText().toString().equals("ganesh is gay")) {
                         x = new SpannableString(" Sudhanva is gay ");
 
-                        ForegroundColorSpan textColor = new ForegroundColorSpan(Color.WHITE);
-                        StyleSpan bold = new StyleSpan(Typeface.BOLD);
-                        AbsoluteSizeSpan sizeText = new AbsoluteSizeSpan(80);
-                        x.setSpan(textColor, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(bold, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        x.setSpan(sizeText, 0, item.length() + 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
-                        sheet.add(0, x);
-
-                        mAdapter.notifyDataSetChanged();
-                        item.getText().clear();
-                        return true;
                     } else {
                         x = new SpannableString(" "+item.getText()+" ");
                     }

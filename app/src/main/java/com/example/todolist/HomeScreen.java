@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class HomeScreen extends AppCompatActivity implements HomeAdapter.OnListListener {
     private static final String TAG="HomeScreen";
     ArrayList<SpannableString> sheet = new ArrayList<>();
+    ArrayList<List> motherList = new ArrayList<>();
     int num = 0;
     RecyclerView list2;
     RecyclerView.LayoutManager layoutM;
@@ -31,7 +32,20 @@ public class HomeScreen extends AppCompatActivity implements HomeAdapter.OnListL
         mAdapter = new HomeAdapter(sheet, this);
         list2.setLayoutManager(layoutM);
         list2.setAdapter(mAdapter);
-        for(int i = 1; i <= 12; i++){
+        SpannableString temp2 = new SpannableString("Camping Trip");
+        sheet.add(temp2);
+        mAdapter.notifyDataSetChanged();
+        temp2 = new SpannableString("Grocery List");
+        sheet.add(temp2);
+        mAdapter.notifyDataSetChanged();
+        temp2 = new SpannableString("Moving Checklist");
+        sheet.add(temp2);
+        mAdapter.notifyDataSetChanged();
+        temp2 = new SpannableString("Mexico Trip");
+        sheet.add(temp2);
+        mAdapter.notifyDataSetChanged();
+
+        for(int i = 5; i <= 12; i++){
             SpannableString temp = new SpannableString("List "+i);
             sheet.add(temp);
         }
